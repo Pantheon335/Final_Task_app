@@ -8,7 +8,7 @@ RUN pip install -U pip \
     && pip install --no-cache pipenv \
     && pip install --no-cache poetry \
     && pip install --no-cache python-dotenv \
-    && pip install --no-cache curl
+    && apt install -y curl
 
 COPY poetry.lock pyproject.toml /app/
 
