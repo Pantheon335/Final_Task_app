@@ -6,7 +6,8 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
 
 RUN pip install -U pip \
     && pip install --no-cache pipenv \
-    && pip install --no-cache poetry
+    && pip install --no-cache poetry \
+    && pip install --no-cache python-dotenv
 
 COPY poetry.lock pyproject.toml /app/
 
@@ -16,6 +17,8 @@ RUN poetry config virtualenvs.create false \
     && poetry install --no-root --with dev
 
 COPY . .
+
+#ENV FLASK_APP=realworld.app
 
 CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
 
