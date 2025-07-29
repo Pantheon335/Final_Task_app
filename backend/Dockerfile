@@ -21,7 +21,7 @@ RUN poetry config virtualenvs.create false \
 COPY . .
 
 #ENV FLASK_APP=realworld.app
-CMD ["/bin/sh", "-c", "flask db upgrade && flask run --host=0.0.0.0 --port=5000"]
+CMD ["/bin/sh", "-c", "poetry run alembic upgrade head && flask run --host=0.0.0.0 --port=5000"]
 
 #CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
 
