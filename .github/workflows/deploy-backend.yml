@@ -2,10 +2,6 @@ name: Deploy Backend
 
 on:
   workflow_dispatch:
-#  push:
-#    paths:
-#      - 'backend/**'
-#      - '.github/workflows/deploy-backend.yml'
 
 permissions:
   id-token: write
@@ -41,3 +37,15 @@ jobs:
             --service backend-service \
             --force-new-deployment \
            --region us-east-1
+
+      - name: Run DB migrations with Alembic
+        working-directory: ./backend
+        run: |
+          pip install poetry alembic
+          poetry install --no-root
+          alembic upgrade head
+        env:
+          POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
+          POSTGRES_DB: ${{ vars.POSTGRES_DB }}
