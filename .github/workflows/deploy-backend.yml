@@ -33,3 +33,11 @@ jobs:
           IMAGE_URI=253650698585.dkr.ecr.us-east-1.amazonaws.com/brukhy-backend:latest
           docker build -t $IMAGE_URI ./backend
           docker push $IMAGE_URI
+
+      - name: Force ECS redeploy
+        run: |
+          aws ecs update-service \
+            --brukhy-cluster \
+            --service backend-service \
+            --force-new-deployment \
+            --region us-east-1
