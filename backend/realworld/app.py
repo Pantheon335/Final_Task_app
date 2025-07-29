@@ -26,6 +26,7 @@ def _register_blueprints(app: Flask):
 
     @app.route("/api/health")
     def health():
+        app.logger.info("Health check hit")
         return "ok", 200
 
 

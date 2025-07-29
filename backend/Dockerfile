@@ -7,7 +7,8 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
 RUN pip install -U pip \
     && pip install --no-cache pipenv \
     && pip install --no-cache poetry \
-    && pip install --no-cache python-dotenv
+    && pip install --no-cache python-dotenv \
+    && pip install --no-cache curl
 
 COPY poetry.lock pyproject.toml /app/
 
