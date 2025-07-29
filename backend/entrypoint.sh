@@ -3,7 +3,7 @@
 set -e
 
 echo "Downloading environment file from S3..."
-aws s3 cp s3://brukhy-terraform-state/secrets/backend.env /tmp/backend.env
+aws s3 cp s3://brukhy-terraform-state/configs/backend.env /tmp/backend.env
 
 echo "Exporting variables from backend.env..."
 export $(grep -v '^#' /tmp/backend.env | xargs)
