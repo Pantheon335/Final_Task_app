@@ -37,7 +37,7 @@ jobs:
       - name: Force ECS redeploy
         run: |
           aws ecs update-service \
-            --brukhy-cluster \
+            --cluster brukhy-cluster \
             --service frontend-service \
             --force-new-deployment \
             --region us-east-1
