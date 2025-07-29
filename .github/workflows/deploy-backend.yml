@@ -43,7 +43,7 @@ jobs:
         run: |
           pip install poetry alembic
           poetry install --no-root
-          alembic upgrade head
+          poetry run alembic upgrade head
         env:
           POSTGRES_USER: ${{ vars.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
