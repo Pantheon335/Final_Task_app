@@ -7,7 +7,8 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
 RUN pip install -U pip \
     && pip install --no-cache pipenv \
     && pip install --no-cache poetry \
-    && pip install --no-cache python-dotenv 
+    && pip install --no-cache python-dotenv \
+    && pip install --no-cache awscli
 
 RUN apt-get update && apt-get install -y curl && apt-get clean
 
@@ -20,9 +21,13 @@ RUN poetry config virtualenvs.create false \
 
 COPY . .
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 #ENV FLASK_APP=realworld.app
-CMD ["/bin/sh", "-c", "poetry run alembic upgrade head && flask run --host=0.0.0.0 --port=5000"]
+#CMD ["/bin/sh", "-c", "poetry run alembic upgrade head && flask run --host=0.0.0.0 --port=5000"]
 
 #CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
 
-#ENTRYPOINT ["/bin/bash"]
