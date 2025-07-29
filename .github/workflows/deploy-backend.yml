@@ -34,10 +34,10 @@ jobs:
           docker build -t $IMAGE_URI ./backend
           docker push $IMAGE_URI
 
-      - name: Force ECS redeploy
-        run: |
-          aws ecs update-service \
-            --cluster brukhy-cluster \
-            --service backend-service \
-            --force-new-deployment \
-            --region us-east-1
+#      - name: Force ECS redeploy
+#        run: |
+#          aws ecs update-service \
+#            --cluster brukhy-cluster \
+#            --service backend-service \
+#            --force-new-deployment \
+#           --region us-east-1
