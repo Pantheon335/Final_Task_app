@@ -24,7 +24,7 @@ def _register_blueprints(app: Flask):
         tags_blueprint, url_prefix=f"/api{tags_blueprint.url_prefix}"
     )
 
-    @app.route("/api/health")
+    @app.route("/health")
     def health():
         return "ok", 200
 
