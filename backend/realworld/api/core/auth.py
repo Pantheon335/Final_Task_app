@@ -6,7 +6,7 @@ from functools import wraps, lru_cache
 from datetime import datetime, timedelta, timezone
 
 ISSUER = "realworld"
-SECRET_KEY = os.getenv("SECRET_KEY", "secret")
+SECRET_KEY = os.environ["SECRET_KEY"]
 OVERRIDE_TOKEN_EXPIRATION = os.getenv("OVERRIDE_TOKEN_EXPIRATION", "FALSE").upper()
 
 
